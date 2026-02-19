@@ -11,14 +11,20 @@ from app.LLM.llm_sst import transcribe_audio
 load_dotenv()
 app = FastAPI()
 
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
+
+allow_origins_list = ["http://localhost:5173"]  # For local testing
+
+if FRONTEND_URL != "http://localhost:5173":
+    allow_origins_list.append(FRONTEND_URL)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=allow_origins_list,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 @app.get("/")
 def root():
