@@ -5,7 +5,7 @@ import axios from "axios";
 function VoiceInterview() {
   const location = useLocation();
   const { role, experience } = location.state || {};
-
+  const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
   const [voiceState, setVoiceState] = useState("thinking");
   const [messages, setMessages] = useState([]);
   const [questionCount, setQuestionCount] = useState(0);
@@ -82,7 +82,7 @@ function VoiceInterview() {
   const startInterview = async () => {
     try {
       const res = await axios.post(
-        "http://127.0.0.1:8000/interview/start",
+        `${API_URL}/interview/start`,
         {
           role,
           experience: parseInt(experience)
@@ -250,7 +250,7 @@ function VoiceInterview() {
       // #endregion
 
       const transcribeRes = await axios.post(
-        "http://127.0.0.1:8000/transcribe",
+        `${API_URL}/transcribe`,
         formData
       );
 
@@ -288,7 +288,7 @@ function VoiceInterview() {
       }
 
       const llmRes = await axios.post(
-        "http://127.0.0.1:8000/interview/answer",
+          `${API_URL}/interview/answer`,
         {
           role,
           experience: parseInt(experience),

@@ -5,7 +5,7 @@ import axios from "axios";
 function ChatInterview() {
   const location = useLocation();
   const navigate = useNavigate();
-
+  const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
   const { role, experience } = location.state || {};
 
   const [messages, setMessages] = useState([]);
@@ -27,7 +27,7 @@ function ChatInterview() {
   const startInterview = async () => {
     try {
       const res = await axios.post(
-        "http://127.0.0.1:8000/interview/start",
+        `${API_URL}/interview/start`,
         {
           role,
           experience: parseInt(experience)
@@ -94,7 +94,7 @@ function ChatInterview() {
 
     try {
       const res = await axios.post(
-        "http://127.0.0.1:8000/interview/answer",
+        `${API_URL}/interview/answer`,
         {
           role,
           experience: parseInt(experience),

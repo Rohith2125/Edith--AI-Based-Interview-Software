@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 function Dashboard() {
+  const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
   const [role, setRole] = useState("");
   const [experience, setExperience] = useState("");
 
@@ -15,7 +16,7 @@ function Dashboard() {
 
   try {
     const response = await axios.post(
-      "http://127.0.0.1:8000/interview/start",
+      `${API_URL}/interview/start`,
       {
         role,
         experience: Number(experience),
