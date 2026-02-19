@@ -1,0 +1,6 @@
+frontend/.env
+backend/.env
+env
+__pycache__/
+.cursor/
+frontend/node_modules
