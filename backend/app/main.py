@@ -12,7 +12,8 @@ load_dotenv()
 app = FastAPI()
 
 FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
-
+# console.log("FRONTEND_URL", FRONTEND_URL);
+# console.log("allow_origins_list", allow_origins_list);
 allow_origins_list = ["http://localhost:5173"]  # For local testing
 
 if FRONTEND_URL != "http://localhost:5173":
